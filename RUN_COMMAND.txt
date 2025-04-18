@@ -1,0 +1,1 @@
+gcc -o student_manager main.c add_fearture/add_student.c rank_fearture/list.c  students_data/students.c search_fearture/Searching.c -Istudents_data -Isearch_fearture -Irank_fearture -Iadd_fearture `pkg-config --cflags --libs gtk+-3.0`

@@ -1,0 +1,24 @@
+{
+    "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/g++.exe",
+    "files.associations": {
+        "*.json": "json",
+        "searching.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c",
+        "typeinfo": "c",
+        "students.h": "c",
+        "stdio.h": "c",
+        "profile.h": "c",
+        "text_encoding": "c",
+        "list": "c",
+        "atomic": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "span": "c",
+        "algorithm": "c",
+        "format": "c",
+        "random": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
