@@ -575,7 +575,7 @@ void on_save_button_clicked(GtkButton *button, gpointer user_data) {
 
 }
 //
-void on_save1_button_clicked(GtkButton *button, gpointer user_data) {
+void on_save_button1_clicked(GtkButton *button, gpointer user_data) {
     printf("run_save1\n");
     AppData *app_data = (AppData *)user_data;
     GtkBuilder *builder = app_data->builder;
@@ -583,85 +583,89 @@ void on_save1_button_clicked(GtkButton *button, gpointer user_data) {
     GtkTreeView *treeview = GTK_TREE_VIEW(gtk_builder_get_object(builder, "treeview"));
     printf("run_save11\n");
     long i = 0;
-    char *m;
+    char m[50];
     if(!selected_id) {
         g_print("Error: No ID selected\n");
         return;
     }
     printf("ID: %s\n", selected_id); 
-    strcpy(m,selected_id+3);
+    strncpy(m, selected_id + 3, sizeof(m) - 1);
     i=atoi(m);
-    delete_data(stu,i); 
-
-    GtkWidget *add_name = GTK_WIDGET(gtk_builder_get_object(builder, "add_name1"));
-    GtkWidget *add_department = GTK_WIDGET(gtk_builder_get_object(builder, "add_department1"));
-    GtkWidget *add_day = GTK_WIDGET(gtk_builder_get_object(builder, "add_day1"));
-    GtkWidget *add_month = GTK_WIDGET(gtk_builder_get_object(builder, "add_month1"));
-    GtkWidget *add_year = GTK_WIDGET(gtk_builder_get_object(builder, "add_year1"));
-    GtkWidget *add_num = GTK_WIDGET(gtk_builder_get_object(builder, "add_num1"));
-    GtkWidget *add_address = GTK_WIDGET(gtk_builder_get_object(builder, "add_address1"));
-    GtkWidget *add_class = GTK_WIDGET(gtk_builder_get_object(builder, "add_class1"));
-    GtkWidget *add_math = GTK_WIDGET(gtk_builder_get_object(builder, "add_math1"));
-    GtkWidget *add_lit = GTK_WIDGET(gtk_builder_get_object(builder, "add_lit1"));
-    GtkWidget *add_eng = GTK_WIDGET(gtk_builder_get_object(builder, "add_eng1"));
+    printf("ID: %d\n", i); 
+    GtkWidget *add_name1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_name1"));
+    GtkWidget *add_department1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_department1"));
+    GtkWidget *add_day1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_day1"));
+    GtkWidget *add_month1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_month1"));
+    GtkWidget *add_year1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_year1"));
+    GtkWidget *add_num1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_num1"));
+    GtkWidget *add_address1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_address1"));
+    GtkWidget *add_class1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_class1"));
+    GtkWidget *add_math1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_math1"));
+    GtkWidget *add_lit1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_lit1"));
+    GtkWidget *add_eng1 = GTK_WIDGET(gtk_builder_get_object(builder, "add_eng1"));
     printf("run_save12\n");
 
-    const gchar *name = gtk_entry_get_text(GTK_ENTRY(add_name));
-    const gchar *department = gtk_entry_get_text(GTK_ENTRY(add_department));
-    const gchar *day = gtk_entry_get_text(GTK_ENTRY(add_day));
-    const gchar *month = gtk_entry_get_text(GTK_ENTRY(add_month));
-    const gchar *year = gtk_entry_get_text(GTK_ENTRY(add_year));
-    const gchar *birth = g_strdup_printf("%s/%s/%s", day, month, year);
-    const gchar *num = gtk_entry_get_text(GTK_ENTRY(add_num));
-    const gchar *address = gtk_entry_get_text(GTK_ENTRY(add_address));
-    const gchar *class_name = gtk_entry_get_text(GTK_ENTRY(add_class));
-    const gchar *math = gtk_entry_get_text(GTK_ENTRY(add_math));
-    const gchar *lit = gtk_entry_get_text(GTK_ENTRY(add_lit));
-    const gchar *eng = gtk_entry_get_text(GTK_ENTRY(add_eng));
+    const gchar *name1 = gtk_entry_get_text(GTK_ENTRY(add_name1));
+    const gchar *department1 = gtk_entry_get_text(GTK_ENTRY(add_department1));
+    const gchar *day1 = gtk_entry_get_text(GTK_ENTRY(add_day1));
+    const gchar *month1 = gtk_entry_get_text(GTK_ENTRY(add_month1));
+    const gchar *year1 = gtk_entry_get_text(GTK_ENTRY(add_year1));
+    const gchar *birth1 = g_strdup_printf("%s/%s/%s", day1, month1, year1);
+    const gchar *num1 = gtk_entry_get_text(GTK_ENTRY(add_num1));
+    const gchar *address1 = gtk_entry_get_text(GTK_ENTRY(add_address1));
+    const gchar *class_name1 = gtk_entry_get_text(GTK_ENTRY(add_class1));
+    const gchar *math1 = gtk_entry_get_text(GTK_ENTRY(add_math1));
+    const gchar *lit1 = gtk_entry_get_text(GTK_ENTRY(add_lit1));
+    const gchar *eng1 = gtk_entry_get_text(GTK_ENTRY(add_eng1));
+    printf("run_save13\n");
 
     char *endptr;
-    float mathnum = strtof(math, &endptr);
+    float mathnum = strtof(math1, &endptr);
     if (*endptr != '\0') {
-        g_printerr("Invalid math score: %s\n", math);
+        g_printerr("Invalid math score: %s\n", math1);
         return;
     }
 
-    float litnum = strtof(lit, &endptr);
+    float litnum = strtof(lit1, &endptr);
     if (*endptr != '\0') {
-        g_printerr("Invalid literature score: %s\n", lit);
+        g_printerr("Invalid literature score: %s\n", lit1);
         return;
     }
 
-    float engnum = strtof(eng, &endptr);
+    float engnum = strtof(eng1, &endptr);
     if (*endptr != '\0') {
-        g_printerr("Invalid English score: %s\n", eng);
+        g_printerr("Invalid English score: %s\n", eng1);
         return;
     }
-    printf("run_save12\n");
+    printf("run_save14\n");
     profile student;
-
     strncpy(student.MSSV, selected_id, sizeof(student.MSSV) - 1);
-    strncpy(student.NAME, name, sizeof(student.NAME) - 1);
-    strncpy(student.department, department, sizeof(student.department) - 1);
-    strncpy(student.DATE, birth, sizeof(student.DATE) - 1);
-    strncpy(student.NUM, num, sizeof(student.NUM) - 1);
-    strncpy(student.ADD, address, sizeof(student.ADD) - 1);
-    strncpy(student.CLASS, class_name, sizeof(student.CLASS) - 1);
+    strncpy(student.NAME, name1, sizeof(student.NAME) - 1);
+    strncpy(student.department, department1, sizeof(student.department) - 1);
+    strncpy(student.DATE, birth1, sizeof(student.DATE) - 1);
+    strncpy(student.NUM, num1, sizeof(student.NUM) - 1);
+    strncpy(student.ADD, address1, sizeof(student.ADD) - 1);
+    strncpy(student.CLASS, class_name1, sizeof(student.CLASS) - 1);
     student.math = mathnum;
     student.lit = litnum;
     student.eng = engnum;
     student.aver = (mathnum + litnum + engnum) / 3.0f;
 
-    GtkWidget *label_error = GTK_WIDGET(gtk_builder_get_object(builder, "label_error"));
-    char *error=studentadd(student);
-    gchar *error_text = g_strdup_printf("Error: %s", error);
-    gtk_label_set_text(GTK_LABEL(label_error), error_text);
-    if(error == NULL)
+    printf("run_check\n");
+    GtkWidget *label_error1 = GTK_WIDGET(gtk_builder_get_object(builder, "label_error1"));
+    char *error1=studentadd(student);
+    gchar *error_text1 = g_strdup_printf("Error: %s", error1);
+    gtk_label_set_text(GTK_LABEL(label_error1), error_text1);
+    if(error1 == NULL)
     {
-        gtk_label_set_text(GTK_LABEL(label_error), "No error.");
+        gtk_label_set_text(GTK_LABEL(label_error1), "No error.");
     }
-    if(error == NULL)
-    {
+
+    if(error1 == NULL)
+    {   
+        printf("run_delete_ID:%d\n",i);
+        delete_data(stu,i); 
+        printf("run_update\n");
         printf("MSSV: %s\n", student.MSSV);
         printf("Name: %s\n", student.NAME);
         printf("Department: %s\n", student.department);
@@ -681,9 +685,7 @@ void on_save1_button_clicked(GtkButton *button, gpointer user_data) {
         printf("save1_button clicked\n");
         printf("save1_complete\n");
     }
-
-}
-//sửa đổi thông tintin
+}//sửa đổi thông tintin
 
 //
 void on_add_button_clicked(GtkButton *button, gpointer user_data) {
@@ -917,11 +919,11 @@ int main(int argc, char *argv[]) {
         g_print("Error: save button not found\n");
     }
 
-    GtkWidget *save1_button = GTK_WIDGET(gtk_builder_get_object(builder, "save1_button"));
-    if (save1_button) {
-        g_signal_connect(save1_button, "clicked", G_CALLBACK(on_save1_button_clicked), &app_data);
+    GtkWidget *save_button1 = GTK_WIDGET(gtk_builder_get_object(builder, "save_button1"));
+    if (save_button1) {
+        g_signal_connect(save_button1, "clicked", G_CALLBACK(on_save_button1_clicked), &app_data);
     } else {
-        g_print("Error: save1 button not found\n");
+        g_print("Error: save button1 not found\n");
     }
 
     GtkWidget *add_button = GTK_WIDGET(gtk_builder_get_object(builder, "add_button"));
